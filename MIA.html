@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Millanit Araque - Artesanías y Manualidades</title>
+    <!-- Google Fonts: Roboto for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Define CSS variables for consistent theming */
+        :root {
+            --primary-color: #f7a400; /* Warm orange, for accents and highlights */
+            --secondary-color: #6a0572; /* Deep purple, for headings and strong elements */
+            --text-color: #333; /* Standard text color */
+            --light-bg: #f9f9f9; /* Light background for sections */
+            --dark-bg: #444; /* Dark background for footer/contact */
+            --white: #fff; /* White color for text on dark backgrounds */
+        }
+
+        /* Basic body styling */
+        body {
+            font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            color: var(--text-color); /* Apply default text color */
+            line-height: 1.6; /* Improve readability */
+        }
+
+        /* Universal container for content centering and padding */
+        .container {
+            max-width: 1200px; /* Maximum width for content */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px; /* Add padding inside the container */
+        }
+
+        /* Header/Cover Section styling */
+        .hero {
+            /* Background image with overlay for better text readability */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('MIA 00.jpg') no-repeat center center/cover;
+            color: var(--white); /* White text for contrast */
+            text-align: center; /* Center align text */
+            padding: 100px 20px; /* Vertical and horizontal padding */
+            position: relative; /* Needed for pseudo-element overlay */
+        }
+
+        /* Pseudo-element for a subtle dark overlay on the background image */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+            z-index: 1; /* Ensure it's below the content */
+        }
+
+        /* Content within the hero section */
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Ensure content is above the pseudo-element overlay */
+        }
+
+        /* Main heading in the hero section */
+        .hero h1 {
+            font-size: 3.5em; /* Large font size */
+            margin-bottom: 10px;
+            color: var(--primary-color); /* Primary accent color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+        }
+
+        /* Paragraphs in the hero section */
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px; /* Limit paragraph width */
+            margin: 20px auto 0; /* Top margin and horizontal centering */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+        }
+
+        /* About Section styling */
+        .about {
+            background-color: var(--light-bg); /* Light background */
+            padding: 60px 20px; /* Vertical and horizontal padding */
+            text-align: center; /* Center align text */
+        }
+
+        /* Heading in the about section */
+        .about h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--secondary-color); /* Secondary accent color */
+        }
+
+        /* Description text in the about section */
+        .about-description {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: var(--text-color);
+        }
+
+        /* Products Section styling */
+        .products {
+            padding: 60px 20px;
+            background-color: var(--white); /* White background */
+            text-align: center;
+        }
+
+        /* Heading in the products section */
+        .products h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+
+        /* List of product categories */
+        .product-list {
+            display: flex; /* Use flexbox for layout */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: center; /* Center items horizontally */
+            gap: 20px; /* Space between items */
+            margin-bottom: 40px;
+        }
+
+        /* Individual product category item */
+        .product-item {
+            background-color: var(--light-bg);
+            padding: 15px 25px;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            font-size: 1.1em;
+            color: var(--dark-bg);
+            font-weight: bold;
+            transition: transform 0.2s ease; /* Smooth hover effect */
+        }
+
+        .product-item:hover {
+            transform: translateY(-3px); /* Lift effect on hover */
+        }
+
+        /* Image gallery grid */
+        .gallery {
+            display: grid; /* Use CSS Grid for layout */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 20px; /* Space between grid items */
+        }
+
+        /* Individual gallery item (image container) */
+        .gallery-item {
+            background-color: #eee;
+            border-radius: 8px;
+            overflow: hidden; /* Hide overflowing parts of the image */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease; /* Smooth hover effect */
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+
+        /* Styling for images within the gallery */
+        .gallery-item img {
+            width: 100%; /* Full width of its container */
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover; /* Crop image to cover the area */
+            display: block; /* Remove extra space below image */
+        }
+
+        /* Contact Section styling */
+        .contact {
+            background-color: var(--dark-bg); /* Dark background */
+            color: var(--white); /* White text */
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* Heading in the contact section */
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--primary-color); /* Primary accent color */
+        }
+
+        /* Social media links container */
+        .social-links a {
+            color: var(--white); /* White icons */
+            font-size: 2.5em; /* Large icon size */
+            margin: 0 15px; /* Horizontal spacing between icons */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color); /* Change color on hover */
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: var(--text-color); /* Dark text color as background */
+            color: var(--white); /* White text */
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em; /* Adjust font size for smaller screens */
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .about h2, .products h2, .contact h2 {
+                font-size: 2em; /* Adjust heading font sizes */
+            }
+
+            .product-list {
+                flex-direction: column; /* Stack product items vertically */
+                align-items: center; /* Center them */
+            }
+
+            .product-item {
+                width: 80%; /* Make product items wider */
+                max-width: 300px;
+            }
+        }
+
+        /* Responsive adjustments for very small screens */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .social-links a {
+                font-size: 2em;
+                margin: 0 10px; /* Reduce spacing between social icons */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header/Cover Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Millanit Araque</h1>
+            <p>Artesanías y Manualidades</p>
+            <p>Mujer, hija, hermana, madre, tía, amiga, trabajadora, emprendedora, creativa, honesta, responsable; algunas cualidades y características que ayudan a describir a Millanit Araque.</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about container">
+        <h2>Nuestra Historia</h2>
+        <p class="about-description">Ella desarrolla productos que hace o modifica manualmente con una gran estética resaltando la belleza de los mismos, comenzó como un pasatiempo para entretenerse, para usar ella misma, sus familiares y amigos cercanos; hasta que este pasatiempo la llevó a recibir cada día más solicitudes de pedido de esos productos que ella desarrolla usando su propia imaginación y creatividad.</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products container">
+        <h2>Nuestros Productos Destacados</h2>
+        <div class="product-list">
+            <div class="product-item">Lazos para el cabello</div>
+            <div class="product-item">Bufandas</div>
+            <div class="product-item">Gorros</div>
+            <div class="product-item">Sombreros</div>
+            <div class="product-item">Guantes</div>
+            <div class="product-item">Sweters</div>
+            <div class="product-item">Sandalias</div>
+            <div class="product-item">Bolsos</div>
+        </div>
+
+        <h3>Algunas de nuestras creaciones de Sandalias</h3>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="MIA 02.jpg" alt="Sandalias con diseño en azul y blanco">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 03.jpg" alt="Sandalias con adornos en rosa y morado">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 04.jpg" alt="Sandalias verdes con detalles amarillos y cuentas">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 05.jpg" alt="Sandalias color aguamarina con lazos y cuentas">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 06.jpg" alt="Sandalias oscuras con detalles de macramé en tonos morados">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 07.jpg" alt="Sandalias marrones con adornos anaranjados y detalles geométricos">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 08.jpg" alt="Sandalias amarillas con tiras de colores vibrantes y adornos redondos">
+            </div>
+            <div class="gallery-item">
+                <img src="MIA 09.jpg" alt="Sandalias moradas con diseño geométrico en rosa y blanco, y una perla decorativa">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>¡Contáctanos!</h2>
+            <p>Síguenos en nuestras redes sociales para ver más de nuestros productos y novedades.</p>
+            <div class="social-links">
+                <!-- Placeholder links for social media, replace # with actual URLs -->
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <!-- You can add more social media links here, e.g., Twitter, Pinterest -->
+                <!-- <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a> -->
+                <!-- <a href="#" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Millanit Araque. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
